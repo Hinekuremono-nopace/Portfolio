@@ -1,0 +1,8 @@
+.card-link {
+  display: block;
+  text-decoration: none; // リンクの下線を初期状態では非表示にする
+  
+  &:hover .card-title {
+    text-decoration: underline; // カード全体にホバー時にタイトルテキストに下線を表示
+  }
+}
