@@ -13,10 +13,38 @@
   <% if @post.user == current_user %>
     <%= link_to "編集", edit_post_path(@post), class: "btn btn-outline-primary" %>
     <%= link_to "削除", @post, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger" %>
-
   <% end %>
 
   <!-- すべてのユーザーに表示されるリンク -->
   <%= link_to "投稿一覧に戻る", posts_path, class: "btn btn-outline-secondary" %>
 
+  <% if user_signed_in? %>
+    <!-- コメントフォーム -->
+    <%= form_with(model: [ @post, @post.comments.build ], local: true) do |form| %>
+      <p>
+        <%= form.text_area :content %>
+        <%= form.submit "コメントする" %>
+      </p>
+    <% end %>
+    <% else %>
+    <p>ログイン中のユーザーのみコメントを投稿できます。</p>
+  <% end %>
+
+  <!-- 投稿に紐づくコメントを表示 -->
+  <h2>コメント</h2>
+  <% if @post.comments.exists? %>
+    <% @post.comments.each do |comment| %>
+      <% if comment.user.present? %>
+        <p>
+          <%= comment.user.email %>:
+          <small><%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %></small>
+          <br>
+          <%= comment.content %>
+        </p>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p>コメントはまだありません。</p>
+  <% end %>
+  
 </div>
