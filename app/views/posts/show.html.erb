@@ -1,10 +1,22 @@
-<p style="color: green"><%= notice %></p>
+<!-- 通知メッセージ -->
+<% if notice %>
+  <div class="alert alert-success" role="alert">
+    <%= notice %>
+  </div>
+<% end %>
 
+<!-- 投稿の詳細表示 -->
 <%= render @post %>
 
-<div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <%= link_to "Back to posts", posts_path %>
+<div class="actions">
+  <!-- 編集と削除のリンクは投稿者のみに表示 -->
+  <% if @post.user == current_user %>
+    <%= link_to "編集", edit_post_path(@post), class: "btn btn-outline-primary" %>
+    <%= link_to "削除", @post, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger" %>
 
-  <%= button_to "Destroy this post", @post, method: :delete %>
+  <% end %>
+
+  <!-- すべてのユーザーに表示されるリンク -->
+  <%= link_to "投稿一覧に戻る", posts_path, class: "btn btn-outline-secondary" %>
+
 </div>

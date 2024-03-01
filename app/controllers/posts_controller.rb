@@ -1,5 +1,8 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy] # ユーザーがログインしていることを確認
+  before_action :check_owner, only: [:edit, :update, :destroy] # 投稿の所有者であることを確認
+
 
   # GET /posts or /posts.json
   def index
@@ -67,4 +70,9 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :content, :user_id)
     end
+
+    def check_owner
+      redirect_to(root_url, alert: "不正なアクセスです。") unless @post.user_id == current_user.id
+    end
+
 end
