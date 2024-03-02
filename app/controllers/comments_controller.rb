@@ -13,6 +13,17 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @post = @comment.post
+    if @comment.user == current_user || @post.user == current_user
+      @comment.destroy
+      redirect_to @post, notice: 'コメントを削除しました。'
+    else
+      redirect_to @post, alert: 'コメントの削除に失敗しました。'
+    end
+  end  
+
   private
 
   def comment_params
