@@ -1,9 +1,11 @@
 <div id="<%= dom_id post %>">
 
-  <%= link_to post_path(post), class: "card card-link" do %>
+  <%= link_to post_path(post), class: "card card-link" , style: "width: 18rem;" do %>
     <div class="card-body">
-      <h5 class="card-title"><%= post.title %></h5>
-      <h6 class="card-subtitle mb-2 text-muted"><%= post.user.email %></h6>
+      
+    <h6 class="card-subtitle mb-2 text-muted"><%= post.user.email %></h6>
+    <h6 class="card-subtitle mb-2 text-muted"><%= post.user.updated_at.strftime("%Y年%m月%d日") %></h6>
+    <h5 class="card-title"><%= post.title %></h5>
     </div>
   <% end %>
 
