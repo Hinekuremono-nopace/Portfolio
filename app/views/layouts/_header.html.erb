@@ -7,6 +7,11 @@
         <ul class="navbar-nav ms-auto">
         <!-- user_signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
 
+        <%= form_with(url: posts_path, method: :get, class: "d-flex", local: true) do |form| %>
+          <%= form.text_field :search, class: 'form-control me-2', placeholder: '検索...' %>
+          <%= form.submit '検索', class: 'btn btn-outline-success' %>
+        <% end %>
+
         <li class="nav-item">
           <%= link_to "投稿一覧", posts_path, class: "nav-link" %>
         </li>
