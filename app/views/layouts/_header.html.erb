@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
   <div class="container">
     <a class="navbar-brand" href="/">UE Meeting</a>
 
@@ -8,8 +8,8 @@
         <!-- user_signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
 
         <%= form_with(url: posts_path, method: :get, class: "d-flex", local: true) do |form| %>
-          <%= form.text_field :search, class: 'form-control me-2', placeholder: '検索...' %>
-          <%= form.submit '検索', class: 'btn btn-outline-success' %>
+          <%= form.text_field :search, class: 'form-control me-2', placeholder: '検索したいタイトル' %>
+          <%= form.submit '検索', class: 'btn btn-outline-light' %>
         <% end %>
 
         <li class="nav-item">

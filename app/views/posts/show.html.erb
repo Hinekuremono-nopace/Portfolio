@@ -1,57 +1,74 @@
-<!-- 通知メッセージ -->
-<% if notice %>
-  <div class="alert alert-success" role="alert">
-    <%= notice %>
-  </div>
-<% end %>
-
-<!-- 投稿の詳細表示 -->
-<%= render @post %>
-
-<div class="actions">
-  <!-- 編集と削除のリンクは投稿者のみに表示 -->
-  <% if @post.user == current_user %>
-    <%= link_to "編集", edit_post_path(@post), class: "btn btn-outline-primary" %>
-    <%= link_to "削除", @post, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger" %>
+<div class="container mt-5">
+  <!-- 通知メッセージ -->
+  <% if notice %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
   <% end %>
 
-  <!-- すべてのユーザーに表示されるリンク -->
-  <%= link_to "投稿一覧に戻る", posts_path, class: "btn btn-outline-secondary" %>
+  <!-- 投稿の詳細表示 -->
+  <div class="card bg-dark text-white mb-4">
+    <div class="card-body">
+      <%= render @post %>
 
-  <% if user_signed_in? %>
-    <!-- コメントフォーム -->
-    <%= form_with(model: [ @post, @post.comments.build ], local: true) do |form| %>
-      <p>
-        <%= form.text_area :content %>
-        <%= form.submit "コメントする" %>
-      </p>
-    <% end %>
-    <% else %>
-    <p>コメントをするには
-    <%= link_to "ログイン", new_user_session_path %>
-    してください。</p>
-  <% end %>
-
-  <!-- 投稿に紐づくコメントを表示 -->
-  <h2>コメント</h2>
-  <% if @post.comments.exists? %>
-    <% @post.comments.each do |comment| %>
-      <% if comment.user.present? %>
-        <p>
-          <%= comment.user.email %>:
-          <small><%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %></small>
-          <br>
-          <%= comment.content %>
-          <br>
-          <% if comment.user == current_user || @post.user == current_user %>
-              <%= link_to '削除', post_comment_path(@post, comment), 
-              data: { turbo_method: :delete, turbo_confirm: 'コメントを削除しますか？' }, class: 'btn btn-outline-danger' %>
-          <% end %>
-        </p>
+      <% if @post.user == current_user %>
+        <div class="d-flex justify-content-end align-items-center mt-3">
+          <%= link_to "編集", edit_post_path(@post), class: "btn btn-outline-light me-2" %>
+          <%= link_to "削除", @post, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger" %>
+        </div>
       <% end %>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <%= link_to "投稿一覧に戻る", posts_path, class: "btn btn-outline-light mb-4" %>
+  </div>
+
+
+
+
+  <div class="comment-section">
+    <% if user_signed_in? %>
+      <!-- コメントフォーム -->
+      <div class="card bg-dark text-white mb-4">
+      <div class="card-body">
+        <%= form_with(model: [ @post, @post.comments.build ], local: true) do |form| %>
+          <div class="form-group">
+          <%= form.text_area :content, class: 'form-control text-white', placeholder: 'コメントを記入してください' %>
+          </div>
+          <div class="d-flex justify-content-end">
+            <%= form.submit "コメントする", class: 'btn btn-outline-light mt-2' %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-center">コメントをするには <%= link_to "ログイン", new_user_session_path %> してください。</p>
     <% end %>
-  <% else %>
-    <p>コメントはまだありません。</p>
-  <% end %>
-  
+
+    <!-- 投稿に紐づくコメントを表示 -->
+    <h2 class="text-white mb-3">コメント</h2>
+    <% if @post.comments.exists? %>
+      <% @post.comments.each do |comment| %>
+        <% if comment.user.present? %>
+          <div class="card bg-dark text-white mb-2">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <%= comment.user.email %>: <small><%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %></small>
+              <p><%= comment.content %></p>
+            </div>
+            <% if comment.user == current_user || @post.user == current_user %>
+              <div>
+                <%= link_to '削除', post_comment_path(@post, comment), 
+                data: { turbo_method: :delete, turbo_confirm: 'コメントを削除しますか？' }, class: 'btn btn-outline-danger btn-sm' %>
+              </div>
+            <% end %>
+          </div>
+        
+          </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p class="text-white">コメントはまだありません。</p>
+    <% end %>
+  </div>
 </div>

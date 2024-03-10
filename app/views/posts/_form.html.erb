@@ -1,29 +1,30 @@
-<%= form_with(model: post) do |form| %>
-  <% if post.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<div class="card bg-dark text-white">
+  <div class="card-body">
+    <%= form_with(model: post, class: "needs-validation", novalidate: true) do |form| %>
+      <% if post.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+          <h4 class="alert-heading"><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h4>
+          <ul>
+            <% post.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-      <ul>
-        <% post.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <div class="form-group mb-3">
+        <%= form.label :タイトル, class: 'form-label' %>
+        <%= form.text_field :title, class: 'form-control text-white', placeholder: 'タイトル' %>
+      </div>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+      <div class="form-group mb-3">
+        <%= form.label :投稿内容, class: 'form-label' %>
+        <%= form.rich_text_area :content, class: 'form-control text-white', placeholder: 'コンテンツ' %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "投稿する", class: 'btn btn-primary' %>
+      </div>
+    <% end %>
   </div>
-
-  <br>
-  
-  <div>
-    <%= form.label :content %>
-    <%= form.rich_text_area :content %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

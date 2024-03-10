@@ -1,0 +1,70 @@
+body {
+  background-color: #343a40; /* 例えば、ダークモードの背景色として */
+  color: #ffffff; /* テキスト色を白に */
+}
+
+// ダークモードの背景色とテキスト色は既に設定
+
+// フォームコントロールのスタイリング
+.form-control {
+  background-color: #495057;
+  color: #ffffff;
+  border: 1px solid #ced4da;
+  
+  &:focus {
+    background-color: #495057;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: none;
+  }
+}
+
+// ボタンのスタイリング
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+
+  &:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+  }
+}
+
+// エラーメッセージのスタイリング
+.error-explanation {
+  color: #f8d7da;
+  background-color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+// リンクのスタイリング
+a {
+  color: #00b5d6;
+  &:hover {
+    color: #009da5;
+  }
+}
+
+/* Trixエディタのカスタマイズ */
+.trix-button-group,
+.trix-button,
+.trix-dialogs,
+.trix-dialog,
+.trix-dialog-label,
+.trix-button--icon-bold::before,
+.trix-button--icon-italic::before,
+.trix-button--icon-strike::before,
+.trix-button--icon-link::before,
+.trix-button--icon-number-list::before,
+.trix-button--icon-bullet-list::before,
+.trix-button--icon-decrease-nesting-level::before,
+.trix-button--icon-increase-nesting-level::before,
+.trix-button--icon-attach::before {
+  color: #ffffff !important; /* ツールバーのテキストとアイコンの色 */
+  border-color: #ffffff !important; /* ツールバーの境界線の色 */
+}
+
+.trix-toolbar {
+  background-color: #343a40 !important; /* ツールバーの背景色 */
+}

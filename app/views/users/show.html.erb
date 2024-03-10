@@ -1,17 +1,24 @@
-<h1>マイページ</h1>
-
-<div class="posts">
-  <% @posts.each do |post| %>
-    <%= link_to post_path(post), class: "card card-link", style: "width: 18rem;" do %>
-      <div class="card-body">
-        <h6 class="card-subtitle mb-2 text-muted"><%= post.user.updated_at.strftime("%Y年%m月%d日") %></h6>
-        <h5 class="card-title"><%= post.title %></h5>
-        <p class="card-text"><%= post.content %></p>
-      </div>
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1 class="text-white">マイページ</h1>
+    <% if user_signed_in? %>
+      <%= link_to "新規投稿", new_post_path, class: 'btn btn-outline-light' %>
     <% end %>
+  </div>
+
+  <% @posts.each do |post| %>
+    <div class="row mb-4">
+      <div class="col">
+        <%= link_to post_path(post), class: "card card-link", style: "width: 100%;" do %> <!-- style の width を 100% に変更して、親要素の幅に合わせる -->
+          <div class="card bg-dark text-white h-100">
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2 text-secondary"><%= post.created_at.strftime("%Y年%m月%d日") %></h6>
+              <h5 class="card-title"><%= post.title %></h5>
+              <p class="card-text"><%= truncate(post.content.to_plain_text, length: 100) %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   <% end %>
 </div>
-
-<br>
-
-<%= link_to "New post", new_post_path %>
