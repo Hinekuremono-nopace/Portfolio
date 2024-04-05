@@ -46,7 +46,7 @@
     <% end %>
 
     <!-- 投稿に紐づくコメントを表示 -->
-    <h2 class="text-white mb-3">コメント</h2>
+    <h2 class="text-white mb-3 ms-3">コメント</h2>
     <% if @post.comments.exists? %>
       <% @post.comments.each do |comment| %>
         <% if comment.user.present? %>

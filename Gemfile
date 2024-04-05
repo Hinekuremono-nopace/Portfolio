@@ -8,8 +8,15 @@ gem "rails", "~> 7.1.3"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+# SQLiteを開発環境とテスト環境でのみ使用するように変更
+group :development, :test do
+  gem 'sqlite3', '~> 1.4'
+end
+
+# PostgreSQLを本番環境で使用するように追加
+group :production do
+  gem 'pg'
+end
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
