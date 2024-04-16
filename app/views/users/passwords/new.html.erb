@@ -9,7 +9,8 @@
             <%= render "devise/shared/error_messages", resource: resource %>
 
             <div class="form-group">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'メールアドレス' %>
+              <%= f.label :メールアドレス, class: 'form-label' %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
             </div>
 
             <div class="actions text-center">

@@ -72,6 +72,8 @@ group :development do
   # gem "spring"
 
   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
+  #　環境変数を利用するため
+  gem 'dotenv-rails'
 end
 
 group :test do

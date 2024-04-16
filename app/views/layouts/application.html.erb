@@ -12,7 +12,22 @@
 
   <body>
     <%= render "layouts/header" %>
+
+    <!-- 通知メッセージ -->
+    <% flash.each do |type, message| %>
+      <% if type == 'alert' || type == 'error' %>
+        <div class="alert error-explanation" role="alert">
+          <%= message %>
+        </div>
+      <% else %>
+        <div class="alert alert-success" role="alert">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+
     <%= yield %>
+
     <%= render "layouts/footer" %>
   </body>
 </html>

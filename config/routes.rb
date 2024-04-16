@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
+
+  #ログイン後の遷移
+  get "verify", :to => "users/registrations#verify"
 
   # ユーザーマイページのルート
   get 'mypage', to: 'users#show'

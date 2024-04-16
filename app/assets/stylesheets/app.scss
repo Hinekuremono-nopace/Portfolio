@@ -30,6 +30,16 @@ body {
   }
 }
 
+.alert {
+  width: 100%; /* 横幅を100%に設定 */
+  margin: 0; /* 上下左右のマージンを0に */
+  padding: 15px; /* パディングで内部の余白を設定 */
+  border-radius: 0; /* 角の丸みをなくす */
+  text-align: center; /* テキストを中央揃えに */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 軽い影を追加 */
+}
+
+
 // エラーメッセージのスタイリング
 .error-explanation {
   color: #f8d7da;

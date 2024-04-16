@@ -1,0 +1,68 @@
+ja:
+  devise:
+    confirmations:
+      confirmed: 'アカウントが確認されました。'
+      send_instructions: '数分以内にアカウント確認のためのメールが届きます。'
+      send_paranoid_instructions: 'もしあなたのメールアドレスが登録されていれば、確認メールが送られます。'
+    failure:
+      already_authenticated: 'すでにログインしています。'
+      unauthenticated: 'ログインまたは登録が必要です。'
+      unconfirmed: 'アカウントが確認されていません。確認メールを確認してください。'
+      locked: 'アカウントがロックされています。'
+      invalid: 'メールアドレスまたはパスワードが無効です。'
+      invalid_token: '無効な認証トークンです。'
+      timeout: 'セッションがタイムアウトしました。もう一度サインインしてください。'
+      inactive: 'アカウントがまだ有効化されていません。'
+      last_attempt: 'あと一回でアカウントがロックされます。'
+    mailer:
+      confirmation_instructions:
+        subject: '確認メール'
+      reset_password_instructions:
+        subject: 'パスワードリセットの指示'
+      unlock_instructions:
+        subject: 'アカウントのロック解除の指示'
+      email_changed:
+        subject: 'メールアドレスが変更されました'
+      password_change:
+        subject: 'パスワードが変更されました'
+    omniauth_callbacks:
+      success: '%{kind}からの認証に成功しました。'
+      failure: '%{kind}からの認証に失敗しました。理由：%{reason}'
+    passwords:
+      no_token: 'トークンが無効です。'
+      send_instructions: 'パスワードリセットのためのメールが数分で送信されます。'
+      updated: 'パスワードが変更されました。'
+      updated_not_active: 'パスワードが変更されましたが、アカウントが有効化されていません。'
+    registrations:
+      signed_up: 'サインアップが完了しました。'
+      signed_up_but_unconfirmed: '確認のメールが送信されました。メール内のリンクをクリックしてアカウントを有効化してください。'
+      updated: 'アカウント情報が更新されました。'
+      destroyed: 'アカウントが削除されました。'
+    sessions:
+      signed_in: 'ログインしました。'
+      signed_out: 'ログアウトしました。'
+      not_signed_in: 'メールアドレス、もしくはパスワードが間違っています。'
+    unlocks:
+      send_instructions: 'アカウントのロックを解除するためのメールが数分で送信されます。'
+      unlocked: 'アカウントのロックが解除されました。'
+  errors:
+    messages:
+      already_confirmed: 'はすでに確認済みです。'
+      confirmation_period_expired: '確認の有効期限が切れています。新たに確認メールをリクエストしてください。'
+      expired: 'の有効期限が切れています。新たにリクエストしてください。'
+      not_found: 'は見つかりませんでした。'
+      not_locked: 'はロックされていません。'
+      not_saved:
+        one: '下記のエラーを確認してください。'
+        other: '下記%{count}件のエラーを確認してください。'
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: 'このメールアドレスは既に使用されています。'
+            password:
+              too_short: 'パスワードは%{count}文字以上で入力してください。'
+            password_confirmation:
+              confirmation: 'パスワードが一致しません。'
